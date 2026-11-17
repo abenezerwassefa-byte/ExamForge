@@ -15,6 +15,7 @@ from pathlib import Path
 import os
 import dj_database_url
 from dotenv import load_dotenv
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,6 +27,10 @@ load_dotenv(BASE_DIR / ".env")
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 
+if not SECRET_KEY:
+    raise ImproperlyConfigured(
+        "SECRET_KEY is missing. Check your .env file."
+    )
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
