@@ -15,37 +15,44 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Question',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('text', models.TextField()),
             ],
         ),
         migrations.CreateModel(
             name='Subject',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=100)),
             ],
         ),
         migrations.CreateModel(
             name='Choice',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('is_correct', models.BooleanField(default=False)),
                 ('text', models.TextField()),
-                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='choices', to='questions.question')),
+                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 related_name='choices', to='questions.question')),
             ],
         ),
         migrations.CreateModel(
             name='Topic',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=100)),
-                ('subject', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='topics', to='questions.subject')),
+                ('subject', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 related_name='topics', to='questions.subject')),
             ],
         ),
         migrations.AddField(
             model_name='question',
             name='topic',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='questions', to='questions.topic'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                    related_name='questions', to='questions.topic'),
         ),
     ]
