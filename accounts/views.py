@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm
 from .models import Profile
+from django.contrib.auth.decorators import login_required
+
+from .forms import RegistrationForm
+from .models import Profile
 
 
 def register(request):
@@ -18,3 +22,9 @@ def register(request):
         form = RegistrationForm()
 
     return render(request, 'accounts/register.html', {'form': form})
+
+
+@login_required
+def dashboard(request):
+
+    return render(request, 'accounts/dashboard.html')
