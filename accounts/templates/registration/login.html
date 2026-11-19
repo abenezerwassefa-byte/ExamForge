@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign In | ExamForge</title>
+
+    <link rel="stylesheet" href="{% static 'accounts/css/register.css' %}">
+</head>
+
+<body>
+
+    <main>
+        <section class="registration-card">
+
+            <h1>Welcome back</h1>
+
+            <p class="description">
+                Sign in to access your ExamForge account.
+            </p>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                {% if form.errors %}
+                    <p>Invalid username or password.</p>
+                {% endif %}
+
+                <button type="submit">
+                    Sign In
+                </button>
+            </form>
+
+            <p class="login-link">
+                Don't have an account?
+                <a href="{% url 'register' %}">Create an account</a>
+            </p>
+
+        </section>
+    </main>
+
+</body>
+</html>
