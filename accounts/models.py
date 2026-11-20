@@ -48,3 +48,47 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.role}"
+
+
+class SchoolAdmin(models.Model):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+    school = models.ForeignKey(
+        School,
+        on_delete=models.CASCADE,
+        related_name='admins'
+    )
+
+    def __str__(self):
+        return self.user.username
+
+
+class Instructor(models.Model):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+    admin = models.ManyToManyField(
+        SchoolAdmin,
+        related_name='instructor'
+    )
+
+    def __str__(self):
+        return self.user.username
+
+
+class Student(models.Model):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+    instructor = models.ForeignKey(
+        Instructor,
+        on_delete=models.CASCADE,
+        related_name='students'
+    )
+
+    def __str__(self):
+        return self.user.username
