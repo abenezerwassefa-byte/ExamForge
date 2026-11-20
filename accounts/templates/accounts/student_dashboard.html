@@ -1,0 +1,121 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard | ExamForge</title>
+
+    <link rel="stylesheet"
+          href="{% static 'accounts/css/student_dashboard.css' %}">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="brand">
+                <h2>ExamForge</h2>
+            </div>
+
+            <nav class="sidebar-navigation">
+
+                <a href="#" class="nav-link active">
+                    Dashboard
+                </a>
+
+                <a href="#" class="nav-link">
+                    My Courses
+                </a>
+
+                <a href="#" class="nav-link">
+                    Examinations
+                </a>
+
+                <a href="#" class="nav-link">
+                    Results
+                </a>
+
+                <a href="#" class="nav-link">
+                    Profile
+                </a>
+
+            </nav>
+
+            <div class="sidebar-footer">
+
+                <form method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">
+                        Log out
+                    </button>
+                </form>
+
+            </div>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <div>
+                    <h1>Dashboard</h1>
+                    <p>Welcome back, {{ request.user.username }}.</p>
+                </div>
+
+                <div class="user-profile">
+                    <span class="user-initial">
+                        {{ request.user.username|first|upper }}
+                    </span>
+
+                    <span>{{ request.user.username }}</span>
+                </div>
+
+            </header>
+
+
+            <!-- My Courses -->
+            <section class="courses-section">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>My Courses</h2>
+                        <p>Courses you have joined through your instructors.</p>
+                    </div>
+                </div>
+
+
+                <!-- Empty State -->
+                <div class="empty-state">
+
+                    <div class="empty-state-icon">
+                        +
+                    </div>
+
+                    <h3>No courses yet</h3>
+
+                    <p>
+                        You haven't joined any courses yet.
+                        Ask your instructor for an invitation
+                        to get started.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+</html>

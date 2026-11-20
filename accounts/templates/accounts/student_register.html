@@ -1,0 +1,132 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Registration | ExamForge</title>
+
+    <link rel="stylesheet" href="{% static 'accounts/css/student_register.css' %}">
+</head>
+
+<body>
+
+    <main>
+
+        <section class="registration-card">
+
+            <header class="registration-header">
+
+                <h1>Create your student account</h1>
+
+                <p class="description">
+                    Enter your details and the invitation code
+                    provided by your instructor to join ExamForge.
+                </p>
+
+            </header>
+
+
+            <form method="POST" class="registration-form">
+
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="invitation_code">Invitation Code</label>
+
+                    <input
+                        type="text"
+                        id="invitation_code"
+                        name="invitation_code"
+                        placeholder="Enter your invitation code"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Choose a username"
+                        autocomplete="username"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email address"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="password1">Password</label>
+
+                    <input
+                        type="password"
+                        id="password1"
+                        name="password1"
+                        placeholder="Create a password"
+                        autocomplete="new-password"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="password2">Confirm Password</label>
+
+                    <input
+                        type="password"
+                        id="password2"
+                        name="password2"
+                        placeholder="Confirm your password"
+                        autocomplete="new-password"
+                        required
+                    >
+                </div>
+
+
+                <button type="submit" class="submit-button">
+                    Create Account
+                </button>
+
+            </form>
+
+
+            <footer class="registration-footer">
+
+                <p>
+                    Already have an account?
+                    <a href="{% url 'login' %}">Sign in</a>
+                </p>
+
+                <a href="{% url 'register' %}" class="back-link">
+                    Back to registration options
+                </a>
+
+            </footer>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

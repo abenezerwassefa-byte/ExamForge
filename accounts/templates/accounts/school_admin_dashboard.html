@@ -1,0 +1,330 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>School Dashboard | ExamForge</title>
+
+    <link rel="stylesheet" href="{% static 'accounts/css/school_admin_dashboard.css' %}">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <h2>Exam<span>Forge</span></h2>
+            <p>School Administration</p>
+        </div>
+
+        <div class="sidebar-divider"></div>
+
+        <nav class="sidebar-nav">
+
+            <p class="nav-label">MAIN MENU</p>
+
+            <a href="#" class="nav-item active">
+                <span class="nav-icon">▦</span>
+                Dashboard
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">♙</span>
+                Instructors
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">♧</span>
+                Students
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">▤</span>
+                Examinations
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">▥</span>
+                Results
+            </a>
+
+            <p class="nav-label settings-label">MANAGEMENT</p>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">⌂</span>
+                School Profile
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-divider"></div>
+
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="nav-item logout-button">
+                    <span class="nav-icon">↪</span>
+                    Logout
+                </button>
+            </form>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div>
+                <p class="breadcrumb">School Administration / Dashboard</p>
+                <h1>Dashboard</h1>
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="admin-info">
+                    <div class="admin-avatar">SA</div>
+
+                    <div>
+                        <p class="admin-name">School Administrator</p>
+                        <p class="admin-role">Administrator</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- WELCOME SECTION -->
+        <section class="welcome-section">
+
+            <div>
+                <h2>Welcome back.</h2>
+                <p>
+                    Here's an overview of your school's academic activities.
+                </p>
+            </div>
+
+            <div class="date-display">
+                School Administration
+            </div>
+
+        </section>
+
+
+        <!-- STATISTICS -->
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-header">
+                    <span class="stat-label">Total Instructors</span>
+                    <span class="stat-icon instructor-icon">♙</span>
+                </div>
+
+                <h2>0</h2>
+                <p>Registered instructors</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-header">
+                    <span class="stat-label">Total Students</span>
+                    <span class="stat-icon student-icon">♧</span>
+                </div>
+
+                <h2>0</h2>
+                <p>Registered students</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-header">
+                    <span class="stat-label">Active Examinations</span>
+                    <span class="stat-icon exam-icon">▤</span>
+                </div>
+
+                <h2>0</h2>
+                <p>Currently running</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-header">
+                    <span class="stat-label">Pending Invitations</span>
+                    <span class="stat-icon invitation-icon">✉</span>
+                </div>
+
+                <h2>0</h2>
+                <p>Awaiting acceptance</p>
+
+            </div>
+
+        </section>
+
+
+        <!-- MANAGEMENT SECTION -->
+        <section class="management-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>School Management</h2>
+                    <p>Manage the people and academic activities within your school.</p>
+                </div>
+            </div>
+
+
+            <div class="management-grid">
+
+                <!-- INSTRUCTORS -->
+                <div class="management-card">
+
+                    <div class="management-card-top">
+                        <div class="management-icon">♙</div>
+                        <span class="card-tag">STAFF</span>
+                    </div>
+
+                    <h3>Instructor Management</h3>
+
+                    <p>
+                        Manage your school's instructors, review their
+                        information, and send invitations to new instructors.
+                    </p>
+
+                    <a href="#" class="card-link">
+                        Manage Instructors <span>→</span>
+                    </a>
+
+                </div>
+
+
+                <!-- STUDENTS -->
+                <div class="management-card">
+
+                    <div class="management-card-top">
+                        <div class="management-icon">♧</div>
+                        <span class="card-tag">ENROLLMENT</span>
+                    </div>
+
+                    <h3>Student Management</h3>
+
+                    <p>
+                        View registered students and monitor student
+                        enrollment across your school's instructors.
+                    </p>
+
+                    <a href="#" class="card-link">
+                        View Students <span>→</span>
+                    </a>
+
+                </div>
+
+
+                <!-- EXAMINATIONS -->
+                <div class="management-card">
+
+                    <div class="management-card-top">
+                        <div class="management-icon">▤</div>
+                        <span class="card-tag">ACADEMICS</span>
+                    </div>
+
+                    <h3>Examinations</h3>
+
+                    <p>
+                        Monitor examinations created by instructors
+                        and oversee examination activity.
+                    </p>
+
+                    <a href="#" class="card-link">
+                        View Examinations <span>→</span>
+                    </a>
+
+                </div>
+
+
+                <!-- RESULTS -->
+                <div class="management-card">
+
+                    <div class="management-card-top">
+                        <div class="management-icon">▥</div>
+                        <span class="card-tag">PERFORMANCE</span>
+                    </div>
+
+                    <h3>Academic Results</h3>
+
+                    <p>
+                        Review examination results and monitor
+                        academic performance across your school.
+                    </p>
+
+                    <a href="#" class="card-link">
+                        View Results <span>→</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RECENT ACTIVITY -->
+        <section class="activity-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Recent Activity</h2>
+                    <p>A summary of recent activity within your school.</p>
+                </div>
+            </div>
+
+            <div class="activity-container">
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">◷</div>
+
+                    <h3>No recent activity</h3>
+
+                    <p>
+                        School activity will appear here as instructors
+                        and students begin using ExamForge.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer class="dashboard-footer">
+            <p>© 2026 ExamForge. All rights reserved.</p>
+            <p>Academic Management Platform</p>
+        </footer>
+
+    </main>
+
+</div>
+
+</body>
+</html>

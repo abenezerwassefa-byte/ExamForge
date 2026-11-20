@@ -1,0 +1,146 @@
+:root {
+    --color-white: #FFFFFF;
+    --color-black: #171717;
+    --color-marigold: #F4B323;
+    --color-background: #FAFAF7;
+    --color-text-secondary: #737373;
+    --color-border: #E5E5E5;
+    --color-error: #DC2626;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-black);
+}
+
+main {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+}
+
+.registration-card {
+    width: 100%;
+    max-width: 440px;
+    padding: 44px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+}
+
+.registration-card h1 {
+    margin: 0 0 12px;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.description {
+    margin: 0 0 32px;
+    color: var(--color-text-secondary);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* Form */
+
+.registration-card form p {
+    margin: 0 0 22px;
+}
+
+.registration-card form label {
+    display: block;
+    margin-bottom: 9px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.registration-card form input {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid var(--color-border);
+    border-radius: 7px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.registration-card form input:focus {
+    border-color: var(--color-marigold);
+    box-shadow: 0 0 0 3px rgba(244, 179, 35, 0.15);
+}
+
+/* Submit Button */
+
+.registration-card form button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 7px;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.registration-card form button:hover {
+    background-color: #333333;
+}
+
+/* Error Messages */
+
+.errorlist {
+    padding-left: 18px;
+    color: var(--color-error);
+    font-size: 13px;
+}
+
+/* Registration Link */
+
+.login-link {
+    margin: 28px 0 0;
+    padding-top: 22px;
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+}
+
+.login-link a {
+    color: var(--color-black);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 2px solid var(--color-marigold);
+}
+
+.login-link a:hover {
+    color: var(--color-text-secondary);
+}
+
+/* Responsive Design */
+
+@media (max-width: 480px) {
+    main {
+        padding: 16px;
+    }
+
+    .registration-card {
+        padding: 30px 24px;
+    }
+
+    .registration-card h1 {
+        font-size: 25px;
+    }
+}

@@ -25,21 +25,21 @@
 
     <div class="account-options">
 
-        <a href="#" class="account-option">
+        <a href="{% url 'student_register' %}" class="account-option">
             <span class="option-title">Student</span>
             <span class="option-description">
                 Join a course using an instructor's invitation.
             </span>
         </a>
 
-        <a href="#" class="account-option">
+        <a href="{% url 'instructor_register' %}" class="account-option">
             <span class="option-title">Instructor</span>
             <span class="option-description">
                 Join a school using an administrator's invitation.
             </span>
         </a>
 
-        <a href="#" class="account-option">
+        <a href="{% url 'school_admin_register' %}" class="account-option">
             <span class="option-title">School Admin / Principal</span>
             <span class="option-description">
                 Register with authorization from ExamForge.
