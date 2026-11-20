@@ -23,15 +23,30 @@
                 and track your academic progress.
             </p>
 
-            <form method="POST">
-                {% csrf_token %}
+    <div class="account-options">
 
-                {{ form.as_p }}
+        <a href="#" class="account-option">
+            <span class="option-title">Student</span>
+            <span class="option-description">
+                Join a course using an instructor's invitation.
+            </span>
+        </a>
 
-                <button type="submit">
-                    Create Account
-                </button>
-            </form>
+        <a href="#" class="account-option">
+            <span class="option-title">Instructor</span>
+            <span class="option-description">
+                Join a school using an administrator's invitation.
+            </span>
+        </a>
+
+        <a href="#" class="account-option">
+            <span class="option-title">School Admin / Principal</span>
+            <span class="option-description">
+                Register with authorization from ExamForge.
+            </span>
+        </a>
+
+    </div>
 
             <p class="login-link">
                 Already have an account?
