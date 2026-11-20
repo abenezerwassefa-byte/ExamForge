@@ -21,6 +21,7 @@ class Profile(models.Model):
     ROLE_CHOICES = [
         ('student', 'Student'),
         ('instructor', 'Instructor'),
+        ('school admin', 'School Administrator')
     ]
 
     user = models.OneToOneField(
