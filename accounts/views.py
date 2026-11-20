@@ -3,9 +3,6 @@ from .forms import RegistrationForm
 from .models import Profile
 from django.contrib.auth.decorators import login_required
 
-from .forms import RegistrationForm
-from .models import Profile
-
 
 def register(request):
 
