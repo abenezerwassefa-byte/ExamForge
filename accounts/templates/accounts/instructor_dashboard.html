@@ -89,9 +89,37 @@
                 </div>
 
             </header>
-
-
-            <!-- Overview -->
+                        <!-- My Schools -->
+            <section class="schools-section">
+            
+                <div class="section-heading">
+                    <h2>My Schools</h2>
+                    <p>Schools where you have an instructor affiliation.</p>
+                </div>
+            
+                <div class="schools-grid">
+                
+                    {% for instructor in instructor_profiles %}
+                
+                        <div class="school-card">
+                            <h3>{{ instructor.school.name }}</h3>
+                            <p>Instructor</p>
+                        </div>
+                    
+                    {% empty %}
+                    
+                        <div class="empty-state">
+                            <h3>No school affiliations</h3>
+                            <p>You are not currently affiliated with any schools.</p>
+                        </div>
+                    
+                    {% endfor %}
+                    
+                </div>
+            
+            </section>
+            
+                        <!-- Overview -->
             <section class="overview-section">
 
                 <div class="section-heading">

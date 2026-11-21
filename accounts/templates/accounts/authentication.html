@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Platform Administrator Authorization | ExamForge</title>
+
+    <link rel="stylesheet" href="{% static 'accounts/css/authentication.css' %}">
+</head>
+
+<body>
+
+    <main>
+
+        <section class="authorization-card">
+
+            <header class="authorization-header">
+
+                <h1>Platform Administrator Authorization</h1>
+
+                <p>
+                    Enter the six-digit authentication code from the
+                    ExamForge Platform Administrator to proceed with
+                    school registration.
+                </p>
+
+            </header>
+
+            <form method="POST" class="authorization-form">
+
+                {% csrf_token %}
+
+                {% if error %}
+                    <p class="error-message">{{ error }}</p>
+                {% endif %}
+
+                <div class="form-group">
+
+                    <label for="totp_code">
+                        Authentication Code
+                    </label>
+
+                    <input
+                        type="text"
+                        id="totp_code"
+                        name="totp_code"
+                        placeholder="Enter 6-digit code"
+                        maxlength="6"
+                        pattern="[0-9]{6}"
+                        inputmode="numeric"
+                        autocomplete="one-time-code"
+                        required
+                        autofocus
+                    >
+
+                </div>
+
+                <button type="submit" class="submit-button">
+                    Verify and Continue
+                </button>
+
+            </form>
+
+            <footer class="authorization-footer">
+
+                <a href="{% url 'register' %}">
+                    Back to registration options
+                </a>
+
+            </footer>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

@@ -104,6 +104,27 @@ main {
     box-shadow: 0 0 0 3px rgba(244, 179, 35, 0.15);
 }
 
+.form-group input[type="password"] {
+    letter-spacing: 0.5px;
+}
+
+/* Form validation errors */
+
+.error-message {
+    margin: 4px 0 0;
+    color: #DC2626;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.form-group ul.errorlist {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: #DC2626;
+    font-size: 13px;
+}
+
 /* Submit button */
 
 .submit-button {

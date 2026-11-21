@@ -20,44 +20,25 @@
 
             <header class="registration-header">
 
-                <h1>Register your school</h1>
+                <h1>School Administrator Registration</h1>
 
-                <p class="description">
-                    Create your School Administrator account to
-                    register your institution on ExamForge.
+                <p>
+                    Register your school and create your administrator account
+                    to get started with ExamForge.
                 </p>
 
             </header>
-
 
             <form method="POST" class="registration-form">
 
                 {% csrf_token %}
 
-                <!-- Platform Administrator Authorization -->
+                {% if error %}
+                    <p class="error-message">{{ error }}</p>
+                {% endif %}
 
                 <div class="form-group">
-                    <label for="totp_code">
-                        Code from your Platform Administrator
-                    </label>
 
-                    <input
-                        type="text"
-                        id="totp_code"
-                        name="totp_code"
-                        placeholder="Enter the 6-digit code"
-                        maxlength="6"
-                        pattern="[0-9]{6}"
-                        inputmode="numeric"
-                        autocomplete="one-time-code"
-                        required
-                    >
-                </div>
-
-
-                <!-- School Information -->
-
-                <div class="form-group">
                     <label for="school_name">School Name</label>
 
                     <input
@@ -67,50 +48,12 @@
                         placeholder="Enter your school's name"
                         required
                     >
+
                 </div>
 
-
                 <div class="form-group">
-                    <label for="school_email">School Email Address</label>
 
-                    <input
-                        type="email"
-                        id="school_email"
-                        name="school_email"
-                        placeholder="Enter your school's email"
-                        required
-                    >
-                </div>
-
-
-                <div class="form-group">
-                    <label for="school_phone">School Phone Number</label>
-
-                    <input
-                        type="tel"
-                        id="school_phone"
-                        name="school_phone"
-                        placeholder="Enter your school's phone number"
-                    >
-                </div>
-
-
-                <div class="form-group">
-                    <label for="school_address">School Address</label>
-
-                    <textarea
-                        id="school_address"
-                        name="school_address"
-                        placeholder="Enter your school's address"
-                        rows="3"
-                    ></textarea>
-                </div>
-
-
-                <!-- Administrator Information -->
-
-                <div class="form-group">
-                    <label for="full_name">Administrator's Full Name</label>
+                    <label for="full_name">Full Name</label>
 
                     <input
                         type="text"
@@ -119,10 +62,25 @@
                         placeholder="Enter your full name"
                         required
                     >
+
                 </div>
 
+                <div class="form-group">
+
+                    <label for="email">Email Address</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email address"
+                        required
+                    >
+
+                </div>
 
                 <div class="form-group">
+
                     <label for="username">Username</label>
 
                     <input
@@ -130,71 +88,48 @@
                         id="username"
                         name="username"
                         placeholder="Choose a username"
-                        autocomplete="username"
                         required
                     >
+
                 </div>
 
-
                 <div class="form-group">
-                    <label for="email">Administrator's Email Address</label>
 
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="Enter your email address"
-                        autocomplete="email"
-                        required
-                    >
-                </div>
-
-
-                <div class="form-group">
-                    <label for="password1">Password</label>
+                    <label for="password">Password</label>
 
                     <input
                         type="password"
-                        id="password1"
-                        name="password1"
+                        id="password"
+                        name="password"
                         placeholder="Create a password"
-                        autocomplete="new-password"
                         required
                     >
+
                 </div>
 
-
                 <div class="form-group">
-                    <label for="password2">Confirm Password</label>
+
+                    <label for="confirm_password">Confirm Password</label>
 
                     <input
                         type="password"
-                        id="password2"
-                        name="password2"
+                        id="confirm_password"
+                        name="confirm_password"
                         placeholder="Confirm your password"
-                        autocomplete="new-password"
                         required
                     >
+
                 </div>
-
-
-                <!-- Submit -->
 
                 <button type="submit" class="submit-button">
-                    Register School
+                    Create Administrator Account
                 </button>
 
             </form>
 
-
             <footer class="registration-footer">
 
-                <p>
-                    Already have an account?
-                    <a href="{% url 'login' %}">Sign in</a>
-                </p>
-
-                <a href="{% url 'register' %}" class="back-link">
+                <a href="{% url 'register' %}">
                     Back to registration options
                 </a>
 
@@ -207,3 +142,4 @@
 </body>
 
 </html>
+```

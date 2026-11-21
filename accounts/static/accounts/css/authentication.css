@@ -1,0 +1,194 @@
+:root {
+    --color-white: #FFFFFF;
+    --color-black: #171717;
+    --color-marigold: #F4B323;
+    --color-background: #FAFAF7;
+    --color-text-secondary: #737373;
+    --color-border: #E5E5E5;
+    --color-error: #DC2626;
+}
+
+/* General page styling */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-black);
+}
+
+/* Main layout */
+
+main {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+}
+
+/* Authorization card */
+
+.authorization-card {
+    width: 100%;
+    max-width: 460px;
+    padding: 40px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+}
+
+/* Header */
+
+.authorization-header h1 {
+    margin-top: 0;
+    margin-bottom: 14px;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--color-black);
+}
+
+.authorization-header p {
+    margin-bottom: 30px;
+    color: var(--color-text-secondary);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Form layout */
+
+.authorization-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-black);
+}
+
+/* Authentication input */
+
+.form-group input {
+    width: 100%;
+    padding: 15px;
+
+    font-family: inherit;
+    font-size: 20px;
+    letter-spacing: 6px;
+    text-align: center;
+
+    color: var(--color-black);
+    background-color: var(--color-white);
+
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+
+    outline: none;
+
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.form-group input::placeholder {
+    color: #A3A3A3;
+    font-size: 14px;
+    letter-spacing: normal;
+}
+
+.form-group input:focus {
+    border-color: var(--color-marigold);
+    box-shadow: 0 0 0 3px rgba(244, 179, 35, 0.15);
+}
+
+/* Error message */
+
+.error-message {
+    margin: 0;
+    padding: 12px;
+    color: var(--color-error);
+    background-color: #FEF2F2;
+    border: 1px solid #FECACA;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+/* Submit button */
+
+.submit-button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 8px;
+
+    font-size: 15px;
+    font-weight: 700;
+    font-family: inherit;
+
+    color: var(--color-black);
+    background-color: var(--color-marigold);
+
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease,
+                transform 0.2s ease;
+}
+
+.submit-button:hover {
+    background-color: #E5A51B;
+}
+
+.submit-button:active {
+    transform: scale(0.98);
+}
+
+/* Footer */
+
+.authorization-footer {
+    margin-top: 28px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.authorization-footer a {
+    color: var(--color-black);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.authorization-footer a:hover {
+    color: var(--color-text-secondary);
+}
+
+/* Responsive layout */
+
+@media (max-width: 480px) {
+
+    main {
+        padding: 16px;
+    }
+
+    .authorization-card {
+        padding: 28px 22px;
+    }
+
+    .authorization-header h1 {
+        font-size: 23px;
+    }
+
+}
