@@ -1,6 +1,10 @@
 from django.db import models
 from django.conf import settings
 
+import uuid
+from django.utils import timezone
+from datetime import timedelta
+
 
 class School(models.Model):
     name = models.CharField(max_length=200)
@@ -66,17 +70,33 @@ class SchoolAdmin(models.Model):
 
 
 class Instructor(models.Model):
-    user = models.OneToOneField(
+    user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='instructor_profiles'
     )
-    admin = models.ManyToManyField(
+    admin = models.ForeignKey(
         SchoolAdmin,
-        related_name='instructor'
+        on_delete=models.CASCADE,
+        related_name='instructors',
     )
 
+    school = models.ForeignKey(
+        School,
+        on_delete=models.CASCADE,
+        related_name='instructors',
+    )
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'school'],
+                name='unique_instructor_per_school'
+            )
+        ]
+
     def __str__(self):
-        return self.user.username
+        return f"{self.user.username} - {self.school.name}"
 
 
 class Student(models.Model):
@@ -84,11 +104,106 @@ class Student(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
-    instructor = models.ForeignKey(
-        Instructor,
-        on_delete=models.CASCADE,
-        related_name='students'
-    )
 
     def __str__(self):
         return self.user.username
+
+
+class Course(models.Model):
+    instructor = models.ForeignKey(
+        Instructor,
+        on_delete=models.CASCADE,
+        related_name='courses'
+    )
+
+    name = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+
+    is_active = models.BooleanField(default=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.name} - {self.instructor.user.username}"
+
+
+class CourseEnrollment(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('active', 'Active'),
+        ('rejected', 'Rejected'),
+        ('cancelled', 'Cancelled'),
+    ]
+
+    student = models.ForeignKey(
+        Student,
+        on_delete=models.CASCADE,
+        related_name='enrollments'
+    )
+
+    course = models.ForeignKey(
+        Course,
+        on_delete=models.CASCADE,
+        related_name='enrollments'
+    )
+
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default='pending'
+    )
+
+    enrolled_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['student', 'course'],
+                name='unique_student_course_enrollment'
+            )
+        ]
+
+    def __str__(self) -> str:
+        return f"{self.student.user.username} - {self.course.name}"
+
+
+class CourseInvitations(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('accepted', 'Accepted'),
+        ('expired', 'Expired'),
+        ('revoked', 'Revoked'),
+    ]
+    course = models.ForeignKey(
+        Course,
+        on_delete=models.CASCADE,
+        related_name='invitations'
+    )
+
+    email = models.EmailField()
+
+    token = models.UUIDField(
+        default=uuid.uuid4,
+        unique=True,
+        editable=False
+    )
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default='pending'
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField()
+
+    def save(self, *args, **kwargs):
+        if not self.expires_at:
+            self.expires_at = timezone.now() + timedelta(hours=24)
+
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.email} - {self.course.name}"
